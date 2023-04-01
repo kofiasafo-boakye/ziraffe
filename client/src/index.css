@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+:root {
+    --primaryColor: #b128db;
+    --hoverColor: #4c4aa3;
+}
+
+.signup{
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    padding: 9px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.1s;
+  }
+
+input:focus {
+    border: 2px solid rgb(161, 161, 161);
+}
+
+label{
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 2px;
+    color: rgb(68, 63, 63);
+}
+
+.pwd{
+    display: flex;
+}
+
+/* button{
+    background-color: var(--primaryColor);
+    color: white;
+    border: 1px solid white;
+} */
