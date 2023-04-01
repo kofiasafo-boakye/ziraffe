@@ -1,16 +1,18 @@
 import { useState } from "react"
 import {toast} from "react-toastify"
-import {Link} from "react-router-dom";
-
+import {Link, useNavigate} from "react-router-dom";
 
 
 const SignUp = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [passwordType, setPasswordType] = useState('password')
+
+  const navigate = useNavigate();//for programatic redirecting
 
   const inputFirstName = (e) => {
     // console.log(e.target.value);
@@ -36,6 +38,15 @@ const SignUp = () => {
     // console.log(e.target.value);
     setConfirmPassword(e.target.value)
   }
+  const togglePassword = () => {
+    if (passwordType === 'password'){
+      setPasswordType('text')
+      return
+    }
+    else{
+      setPasswordType('password')
+    }
+  }
 
   const isValidEmail = (inputEmail) => { 
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -58,23 +69,36 @@ const SignUp = () => {
         toast.error("Passwords do not match")
     }
     else{
+      const response = await fetch("http://localhost:5000/auth/api/register", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          username,
+          email,
+          password
+        }),
+      })
+  
+      const data = await response.json()
+      // console.log(data)
+      // console.log(response.status)
+      // console.log("message:",data["message"])
+      if(response.status !== 200){
+        toast.error(data["message"])
+      }
+      else{
+        navigate("/")
+      }
+      
 
     }
 
 
-    // const response = await fetch("http://localhost:5000/api/register", {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     email,
-    //     password
-    //   }),
-    // })
 
-    // const data = await response.json()
-    // console.log(data)
   }
 
 
@@ -83,30 +107,30 @@ const SignUp = () => {
         <div className="signup">
             <h1>Ziraffe</h1>
             <form action="" onSubmit={handleSubmit}>
-            <label for="">First name</label>
+            <label>First name</label>
             <div>
                 <input type="text" placeholder="first name" value={firstName} onChange = {inputFirstName}/>
             </div>
-            <label for="">Last name</label>
+            <label>Last name</label>
             <div>
                 <input type="text" placeholder="last name" value={lastName} onChange = {inputLastName}/>
             </div>
-            <label for="">Username</label>
+            <label>Username</label>
             <div>
                 <input type="text" placeholder="username" value={username} onChange = {inputUsername}/>
             </div>
-            <label for="">Email</label>
+            <label>Email</label>
             <div>
                 <input type="text" placeholder="email" value={email} onChange = {inputEmail}/>
             </div>
             
-            <label for="">Password</label>
+            <label>Password</label>
             <div>
-                <input type="password" placeholder="password" value={password} onChange = {inputPassword}/>
+                <input type={passwordType} placeholder="password" value={password} onChange = {inputPassword}/><button type="button" onClick={togglePassword}>view</button>
             </div>
-            <label for="">Confirm Password</label>
+            <label>Confirm Password</label>
             <div>
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/>
+                <input type={passwordType} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><button type="button" onClick={togglePassword}>view</button>
             </div>
             <button type="submit">Sign Up</button>
             <p>Already have an account?<Link to='/'>Sign In</Link></p>
