@@ -58,18 +58,20 @@ const loginUser = async (req, res) => {
             // validation? res.status(200).json(user) : res.status(400).json("Wrong user details")
 
             if(!validation){
-                res.status(400).json("Wrong password")
+                // res.status(400).json("Wrong password")
+                res.status(400).json("Wrong username or password")
             }
             else{
                 const token = jwt.sign({
-                    username: user.username,
-                    id: user._id 
+                    id: user._id, 
+                    username: user.username
                 }, process.env.JWT_KEY, {expiresIn: "1h"})
                 res.status(200).json({user, token})
             }
         }
         else{
-            res.status(400).json("user not found")
+            // res.status(400).json("user not found")
+            res.status(400).json("Wrong username or password")
         }
     } catch (error) {
         res.status(500).json({message: error.message})
