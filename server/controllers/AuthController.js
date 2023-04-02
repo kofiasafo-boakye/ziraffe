@@ -1,9 +1,10 @@
 // import bcrypt from "bcrypt"
-var bcrypt = require('bcrypt')
-var jwt = require('jsonwebtoken')
 // import jwt from "jsonwebtoken"
 // import userModel from "../models/userModel"
+var bcrypt = require('bcrypt')
+var jwt = require('jsonwebtoken')
 var UserModel = require('../models/userModel')
+
 
 // function to register a new user
 const registerUser = async(req, res) => {
@@ -31,11 +32,12 @@ const registerUser = async(req, res) => {
         const user = await newUser.save()
 
         const token = jwt.sign({
-            username: user.username,
+            // username: user.username,
             id: user._id 
-        }, process.env.JWT_KEY, {expiresIn: "1h"})
-
+        }, process.env.JWT_KEY, {expiresIn: "1d"})
+        res.cookie("jwt", token, {httpOnly: true, maxAge: 86400})
         res.status(200).json({user, token})
+        // res.status(200).json({user: user._id})
         
     }catch (error){
         res.status(500).json({message: error.message})
@@ -64,8 +66,9 @@ const loginUser = async (req, res) => {
             else{
                 const token = jwt.sign({
                     id: user._id, 
-                    username: user.username
-                }, process.env.JWT_KEY, {expiresIn: "1h"})
+                    // username: user.username
+                }, process.env.JWT_KEY, {expiresIn: "1d"})
+                res.cookie("jwt", token, {httpOnly: true, maxAge: 86400})
                 res.status(200).json({user, token})
             }
         }

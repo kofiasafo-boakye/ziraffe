@@ -41,6 +41,7 @@ const Login = () => {
             
             const response = await fetch("http://localhost:5000/auth/api/login", {
                 method: "POST",
+                credentials: 'include',
                 headers: {
                 'Content-Type': 'application/json'
                 },
@@ -56,7 +57,7 @@ const Login = () => {
                 // console.log("message:",data["message"])
                 if(response.status !== 200){
                     toast.error(data)
-                    console.log(data)
+                    console.log("data",data)
                 }
                 else{
                     navigate("/home")

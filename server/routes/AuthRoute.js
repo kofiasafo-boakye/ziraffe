@@ -1,6 +1,6 @@
 const express = require("express")
-// import { registerUser } from '../controllers/AuthController.js';
 const {registerUser, loginUser} = require('../controllers/AuthController.js')
+// import { registerUser } from '../controllers/AuthController.js';
 
 const router = express.Router()
 

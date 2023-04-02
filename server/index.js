@@ -3,8 +3,10 @@ const cors = require('cors')
 const dotenv = require("dotenv")
 const connectDB = require("./config/db")
 const bodyParser = require("body-parser");
-// import AuthRoute from './routes/AuthRoute.js'
 const AuthRoute = require('./routes/AuthRoute.js')
+const UserRoute = require('./routes/UserRoute.js')
+var cookieParser = require("cookie-parser")
+// import AuthRoute from './routes/AuthRoute.js'
 // const User = require('./models/userModel')
 
 const app = express()
@@ -15,7 +17,8 @@ const PORT = process.env.PORT;
 // app.use(express.json())
 app.use(bodyParser.json({limit:'30mb', extended: true}));
 app.use(bodyParser.urlencoded({limit:'30mb', extended: true}));
-app.use(cors())
+app.use(cors({origin:true, credentials: true}))
+app.use(cookieParser())
 
 
 
@@ -59,6 +62,9 @@ app.use(cors())
 
 //auth route
 app.use('/auth', AuthRoute)
+
+// user route
+app.use('/user', UserRoute)
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}...`)
