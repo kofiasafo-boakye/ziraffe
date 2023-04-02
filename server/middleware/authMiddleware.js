@@ -10,7 +10,8 @@ const requireAuth = (req, res, next) => {
         jwt.verify(token, process.env.JWT_KEY, (err, decodedToken) => {
             if(err){
                 console.log(err.message)
-                res.redirect('/')
+                res.redirect('http://localhost:3000/')
+                // res.redirect('/')
             }
             else{
                 console.log(decodedToken)
@@ -18,7 +19,8 @@ const requireAuth = (req, res, next) => {
             }
         })
     }else{
-        res.redirect('/')
+        res.redirect('http://localhost:3000/')
+        // res.redirect('/')
     }
 }
 
