@@ -1,12 +1,15 @@
 import { useState } from "react"
 import {toast} from "react-toastify"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+
 
 
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordType, setPasswordType] = useState('password')
+
+    const navigate = useNavigate();//for programatic redirecting
 
     const inputUsername = (e) => {
         // console.log(e.target.value);
@@ -56,7 +59,7 @@ const Login = () => {
                     console.log(data)
                 }
                 else{
-                    // navigate("/")
+                    navigate("/home")
                     console.log("login successful")
                 }
             }
