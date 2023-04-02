@@ -84,4 +84,12 @@ const loginUser = async (req, res) => {
     
 }
 
-module.exports = {registerUser, loginUser}
+
+
+// function to logout a user
+const logoutUser = async (req, res) => {
+    res.cookie('jwt', "", {maxAge: 1})
+    res.redirect('http://localhost:3000/')
+}
+
+module.exports = {registerUser, loginUser, logoutUser}
