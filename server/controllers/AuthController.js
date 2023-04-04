@@ -4,6 +4,7 @@
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
 var UserModel = require('../models/userModel')
+//  const BASE_URL = require("../url/base_url")
 
 
 // function to register a new user

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
+import {BACKEND_API} from "../api/backend_api"
 
 
 
@@ -39,7 +40,7 @@ const Login = () => {
         }
         else{
             
-            const response = await fetch("http://localhost:5000/auth/api/login", {
+            const response = await fetch(`${BACKEND_API}/auth/api/login`, {
                 method: "POST",
                 credentials: 'include',
                 headers: {
@@ -71,11 +72,11 @@ const Login = () => {
         <div className="signup">
             <h1>Ziraffe</h1>
                 <form action="" onSubmit={handleSubmit}>
-                <label>Username </label>
+                <label>Username</label>
                 <div>
                     <input type="text" placeholder="username" value={username} onChange = {inputUsername}/>
                 </div>
-                <label>Password </label>
+                <label>Password</label>
                 <div>
                     <input type={passwordType} placeholder="password" value={password} onChange = {inputPassword}/><button type="button" onClick={togglePassword}>view</button>
                 </div>

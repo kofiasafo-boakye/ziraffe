@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
+import {BACKEND_API} from "../api/backend_api"
 
 
 const SignUp = () => {
@@ -11,6 +12,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordType, setPasswordType] = useState('password')
+  const [passwordType2, setPasswordType2] = useState('password')
 
   const navigate = useNavigate();//for programatic redirecting
 
@@ -47,6 +49,15 @@ const SignUp = () => {
       setPasswordType('password')
     }
   }
+  const togglePassword2 = () => {
+    if (passwordType2 === 'password'){
+      setPasswordType2('text')
+      return
+    }
+    else{
+      setPasswordType2('password')
+    }
+  }
 
   const isValidEmail = (inputEmail) => { 
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -69,7 +80,7 @@ const SignUp = () => {
         toast.error("Passwords do not match")
     }
     else{
-      const response = await fetch("http://localhost:5000/auth/api/register", {
+      const response = await fetch(`${BACKEND_API}/auth/api/register`, {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -131,7 +142,7 @@ const SignUp = () => {
             </div>
             <label>Confirm Password</label>
             <div>
-                <input type={passwordType} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><button type="button" onClick={togglePassword}>view</button>
+                <input type={passwordType2} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><button type="button" onClick={togglePassword2}>view</button>
             </div>
             <button type="submit">Sign Up</button>
             <p>Already have an account?<Link to='/'>Sign In</Link></p>
