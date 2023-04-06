@@ -70,7 +70,8 @@ const loginUser = async (req, res) => {
                     // username: user.username
                 }, process.env.JWT_KEY, {expiresIn: "1d"})
                 res.cookie("jwt", token, {httpOnly: true, maxAge: 86400})
-                res.status(200).json({user, token})
+                // res.status(200).json({user, token})
+                res.status(200).json({user:user._id, token})
             }
         }
         else{

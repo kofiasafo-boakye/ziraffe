@@ -9,6 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordType, setPasswordType] = useState('password')
+    // const [id, setId] = useState("")
 
     const navigate = useNavigate();//for programatic redirecting
 
@@ -31,6 +32,7 @@ const Login = () => {
           setPasswordType('password')
         }
     }
+    // let response;
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -40,31 +42,42 @@ const Login = () => {
         }
         else{
             
-            const response = await fetch(`${BACKEND_API}/auth/api/login`, {
-                method: "POST",
-                credentials: 'include',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                }),
-            })
+            try{
+                const response = await fetch(`${BACKEND_API}/auth/api/login`, {
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    }),
+                })
 
-            const data = await response.json()
+                const data = await response.json()
                 // console.log(data)
                 // console.log(response.status)
                 // console.log("message:",data["message"])
                 if(response.status !== 200){
                     toast.error(data)
-                    console.log("data",data)
+                    console.log("ERROR:",data)
                 }
                 else{
-                    navigate("/home")
+                    // navigate("/home")
+                    // setId(data["user"])
+                    // console.log("id:",data["user"]["_id"])
+                    // console.log("id:",id)
+                    navigate(`/profile/${data["user"]}`)
+                    // console.log("data:",data["user"])
                     console.log("login successful")
                 }
             }
+            catch(error){
+                toast.error("Failed to connect to Database")
+            }
+
+        }            
     
     }
 

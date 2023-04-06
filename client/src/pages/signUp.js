@@ -80,36 +80,37 @@ const SignUp = () => {
         toast.error("Passwords do not match")
     }
     else{
-      const response = await fetch(`${BACKEND_API}/auth/api/register`, {
-        method: "POST",
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          username,
-          email,
-          password
-        }),
-      })
-  
-      const data = await response.json()
-      // console.log(data)
-      // console.log(response.status)
-      // console.log("message:",data["message"])
-      if(response.status !== 200){
-        toast.error(data["message"])
-      }
-      else{
-        navigate("/")
+      try{
+        const response = await fetch(`${BACKEND_API}/auth/api/register`, {
+          method: "POST",
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            username,
+            email,
+            password
+          }),
+        })
+    
+        const data = await response.json()
+        // console.log(data)
+        // console.log(response.status)
+        // console.log("message:",data["message"])
+        if(response.status !== 200){
+          toast.error(data["message"])
+        }
+        else{
+          navigate("/")
+        }
+      }catch(error){
+        toast.error("Failed to connect to Database")
       }
       
-
     }
-
-
 
   }
 
