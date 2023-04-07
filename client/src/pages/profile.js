@@ -14,15 +14,23 @@ const Profile = () => {
     const {data: user, isPending, error} = useFetch(`${BACKEND_API}/user/profile/${id}`)
 
     console.log("id:",id)
-    console.log("user",data)
+    console.log("user",user)
     // const {data: album} = useFetch('http://localhost:8000/albums/' + id)
+
+    const handleSubmit = () => {
+        // console.log("id:",id)
+        navigate(`/EditProfile/${id}`)
+    }
 
     return ( 
         <div>
-            Profile
-            Welcome {user.lastName}
-
-            <button>Edit Profile</button>
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+            <div>First Name:  {user.firstName}</div>
+            <div>Last Name:  {user.lastName}</div>
+            <div>Username:  {user.username}</div>
+            <div>Email:  {user.email}</div>
+            <button onClick={handleSubmit}>Edit Details</button>
         </div>
      );
 }

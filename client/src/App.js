@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/home";
 import Profile from "./pages/profile";
+import EditProfile from "./pages/editProfile";
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/home' element={<Home/>} />
         <Route path='/profile/:id' element={<Profile/>} />
+        <Route path='/EditProfile/:id' element={<EditProfile/>} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
