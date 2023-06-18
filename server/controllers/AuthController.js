@@ -9,14 +9,14 @@ var UserModel = require('../models/userModel')
 
 // function to register a new user
 const registerUser = async(req, res) => {
-    const {firstName, lastName, username, email, password} = req.body;
+    const {firstName, lastName, username, email, password, profilePicture} = req.body;
 
     const salt = await bcrypt.genSalt(10)
     
     const hashedPassword = await bcrypt.hash(password, salt)
 
 
-    const newUser = new UserModel({firstName, lastName, username, email, password: hashedPassword})
+    const newUser = new UserModel({firstName, lastName, username, email, password: hashedPassword, profilePicture})
 
 
     try{

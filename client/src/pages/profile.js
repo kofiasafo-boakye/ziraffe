@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
+import pic from  "../upload/profile_picture.jpg"
 
 
 
@@ -30,6 +31,8 @@ const Profile = () => {
             <div>Last Name:  {user.lastName}</div>
             <div>Username:  {user.username}</div>
             <div>Email:  {user.email}</div>
+            {/* <img src={user.profilePicture} alt="" /> */}
+            <img src={pic} alt="" />
             <button onClick={handleSubmit}>Edit Details</button>
         </div>
      );

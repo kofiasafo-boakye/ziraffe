@@ -13,6 +13,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordType, setPasswordType] = useState('password')
   const [passwordType2, setPasswordType2] = useState('password')
+  const profilePicture = "upload/profile_picture.jpg"
 
   const navigate = useNavigate();//for programatic redirecting
 
@@ -92,14 +93,15 @@ const SignUp = () => {
             lastName,
             username,
             email,
-            password
+            password,
+            profilePicture
           }),
         })
     
         const data = await response.json()
-        // console.log(data)
-        // console.log(response.status)
-        // console.log("message:",data["message"])
+        console.log(data)
+        console.log(response.status)
+        console.log("message:",data["message"])
         if(response.status !== 200){
           toast.error(data["message"])
         }
@@ -145,6 +147,7 @@ const SignUp = () => {
             <div>
                 <input type={passwordType2} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><button type="button" onClick={togglePassword2}>view</button>
             </div>
+            
             <button type="submit">Sign Up</button>
             <p>Already have an account?<Link to='/'>Sign In</Link></p>
             </form>
