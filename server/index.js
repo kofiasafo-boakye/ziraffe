@@ -9,6 +9,8 @@ var cookieParser = require("cookie-parser")
 // import AuthRoute from './routes/AuthRoute.js'
 // const User = require('./models/userModel')
 
+// const path = require('path')
+
 const app = express()
 dotenv.config()
 connectDB()
@@ -18,8 +20,9 @@ const PORT = process.env.PORT;
 app.use(bodyParser.json({limit:'30mb', extended: true}));
 app.use(bodyParser.urlencoded({limit:'30mb', extended: true}));
 app.use(cors({origin:true, credentials: true}))
+// app.use(cors())
 app.use(cookieParser())
-
+app.use('/uploads', express.static('../client/src/uploads'))
 
 
 // app.post("/api/register", async (req, res) => {
