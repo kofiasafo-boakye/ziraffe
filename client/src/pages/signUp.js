@@ -13,7 +13,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordType, setPasswordType] = useState('password')
   const [passwordType2, setPasswordType2] = useState('password')
-  const profilePicture = "upload/profile_picture.jpg"
+  const profilePicture = "profile_picture.jpg"
 
   const navigate = useNavigate();//for programatic redirecting
 

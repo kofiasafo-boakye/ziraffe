@@ -2,8 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
-import pic from  "../uploads/profile_picture.jpg"
-
 
 
 const Profile = () => {
@@ -27,13 +25,11 @@ const Profile = () => {
         <div>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
+            <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt="" />
             <div>First Name:  {user.firstName}</div>
             <div>Last Name:  {user.lastName}</div>
             <div>Username:  {user.username}</div>
             <div>Email:  {user.email}</div>
-            {/* <img src={user.profilePicture} alt="" /> */}
-            <img src={"http://localhost:5000/uploads/profile_picture.jpg"} alt="" />
-            {/* <img src={pic} alt="" /> */}
             <button onClick={handleSubmit}>Edit Details</button>
         </div>
      );
