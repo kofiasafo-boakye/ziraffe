@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
-import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { toast } from "react-toastify";
@@ -14,6 +13,8 @@ const initialState = {
     username: "",
     email: "",
     profilePicture: ""
+    
+
 }
 
 
@@ -31,7 +32,7 @@ const EditProfile = () => {
     const [state, setState] = useState(initialState)
     const {firstName, lastName, username, email, profilePicture} = state
     const [image, setImage] = useState('')
-    // console.log(image)
+    console.log(profilePicture)
 
     const url = `${BACKEND_API}/user/profile/${id}`
 
@@ -58,11 +59,10 @@ const EditProfile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!firstName || !lastName || !email || !profilePicture){ 
+        if(!firstName || !lastName || !email || !profilePicture || !image){ 
             toast.error("Please fill all fields")
         }
         else{
-            
             const formData = new FormData()
             formData.append('firstName',firstName)
             formData.append('lastName',lastName)
@@ -70,6 +70,7 @@ const EditProfile = () => {
             // formData.append('username',username)
             formData.append('profilePicture',profilePicture)
             console.log(formData.get('firstName'))
+            console.log(formData.get('profilePicture'))
             setIsPending(true)
             
             
@@ -109,7 +110,7 @@ const EditProfile = () => {
             <label htmlFor="">Email</label>
                 <input type="text" name = "email" required onChange={handleInputChange} value={email}/>
             <label htmlFor="">Change your profile photo</label>
-                <input type="file" onChange={(e) => setImage(e.target.files[0])}/>
+                <input name = "picture" type="file" onChange={(e) => setImage(e.target.files[0])} required/>
             <br /> 
             {isPending && <button >Editing...</button>}
             {!isPending && <button onClick={handleSubmit}>Edit</button>}
