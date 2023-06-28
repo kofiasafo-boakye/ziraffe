@@ -68,7 +68,7 @@ const EditProfile = () => {
             formData.append('lastName',lastName)
             formData.append('email',email)
             // formData.append('username',username)
-            formData.append('profilePicture',profilePicture)
+            formData.append('image',image)
             console.log(formData.get('firstName'))
             console.log(formData.get('profilePicture'))
             setIsPending(true)
@@ -110,7 +110,7 @@ const EditProfile = () => {
             <label htmlFor="">Email</label>
                 <input type="text" name = "email" required onChange={handleInputChange} value={email}/>
             <label htmlFor="">Change your profile photo</label>
-                <input name = "picture" type="file" onChange={(e) => setImage(e.target.files[0])} required/>
+                <input type="file" onChange={(e) => setImage(e.target.files[0])} required/>
             <br /> 
             {isPending && <button >Editing...</button>}
             {!isPending && <button onClick={handleSubmit}>Edit</button>}

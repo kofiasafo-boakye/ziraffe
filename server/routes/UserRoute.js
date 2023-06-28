@@ -9,7 +9,7 @@ const router = express.Router()
 // router.get('/profile/:id', requireAuth, getUser)
 router.get('/profile/:id', getUser)
 
-router.post("/editProfile/:id", upload.single('picture'), updateUser)
+router.post("/editProfile/:id", upload.single('image'), updateUser)
 
 
 module.exports = router;
