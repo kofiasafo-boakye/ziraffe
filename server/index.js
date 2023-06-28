@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const AuthRoute = require('./routes/AuthRoute.js')
 const UserRoute = require('./routes/UserRoute.js')
 var cookieParser = require("cookie-parser")
+
 // import AuthRoute from './routes/AuthRoute.js'
 // const User = require('./models/userModel')
 
@@ -23,6 +24,7 @@ app.use(cors({origin:true, credentials: true}))
 // app.use(cors())
 app.use(cookieParser())
 app.use('/uploads', express.static('../client/src/uploads'))
+
 
 
 // app.post("/api/register", async (req, res) => {
@@ -72,3 +74,4 @@ app.use('/user', UserRoute)
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}...`)
 })
+

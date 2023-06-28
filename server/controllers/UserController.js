@@ -36,27 +36,38 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
     const id = req.params.id;
 
-    const {currentId, currentUserAdminStatus, password} = req.body;
+    console.log(req.body)
+    // console.log(req.body["firstName"])
 
-    if(id === currentId || currentUserAdminStatus ){
+    // try {
+    //     const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
+    //     res.status(200).json(user)
+    // } catch (error) {
+    //     res.status(500).json( error)
 
-        if(password){
-            const salt = await bcrypt.genSalt(10)
-            req.body.password = await bcrypt.hash(password, salt)
-        }
+    // }
+
+    // const {currentId, currentUserAdminStatus, password} = req.body;
+
+    // if(id === currentId || currentUserAdminStatus ){
+
+    //     if(password){
+    //         const salt = await bcrypt.genSalt(10)
+    //         req.body.password = await bcrypt.hash(password, salt)
+    //     }
 
 
-        try {
-            const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
-            res.status(200).json(user)
-        } catch (error) {
-            res.status(500).json( error)
+    //     try {
+    //         const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
+    //         res.status(200).json(user)
+    //     } catch (error) {
+    //         res.status(500).json( error)
 
-        }
-    }
-    else{
-        res.status(403).json("Access denied!!! You can only update your profile")
-    }
+    //     }
+    // }
+    // else{
+    //     res.status(403).json("Access denied!!! You can only update your profile")
+    // }
 }
 
 
@@ -162,4 +173,4 @@ const unfollowUser = async (req, res) => {
 
 
 
-module.exports = {getUser}
+module.exports = {getUser, updateUser}
