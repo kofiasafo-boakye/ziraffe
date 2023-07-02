@@ -36,17 +36,20 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
     const id = req.params.id;
 
-    console.log('file:',req.file)
+    console.log('file:',req.file.filename)
+    // console.log('req.body: ', req.body)
+    console.log('fname: ', req.body.firstName)
 
     // console.log(req.body["firstName"])
 
-    // try {
-    //     const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
-    //     res.status(200).json(user)
-    // } catch (error) {
-    //     res.status(500).json( error)
+    try {
+        // const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true}) old code
+        const user = await UserModel.findByIdAndUpdate(id, {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, profilePicture: req.file.filename}, {new: true}) 
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json( error)
 
-    // }
+    }
 
     // const {currentId, currentUserAdminStatus, password} = req.body;
 

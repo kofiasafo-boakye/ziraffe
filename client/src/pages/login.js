@@ -2,6 +2,7 @@ import { useState } from "react"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
+import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 
 
 
@@ -10,6 +11,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [passwordType, setPasswordType] = useState('password')
     // const [id, setId] = useState("")
+    
+    // const storedId = getStoredIdFromLocalStorage()
 
     const navigate = useNavigate();//for programatic redirecting
 
@@ -68,9 +71,17 @@ const Login = () => {
                     // setId(data["user"])
                     // console.log("id:",data["user"]["_id"])
                     // console.log("id:",id)
-                    navigate(`/profile/${data["user"]}`)
+                    localStorage.setItem('myId', data["user"])
+                    // const sId = localStorage.getItem('myId')
+                    const sId = getStoredIdFromLocalStorage()
+                    // localStorage.removeItem('myId')
+                    navigate(`/profile/${sId}`)
+                    // localStorage.setItem('myId', data["user"])
+                    console.log('storedId', localStorage.getItem('myId'))
+                    // navigate(`/profile/${data["user"]}`)
+                    
                     // console.log("data:",data["user"])
-                    console.log("login successful")
+                    // console.log("login successful")
                 }
             }
             catch(error){

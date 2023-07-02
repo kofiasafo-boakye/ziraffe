@@ -85,7 +85,7 @@ const EditProfile = () => {
                 // setUsername("")
                 // setBio("")
                 toast.success("User updated successfully")
-                navigate("/")
+                navigate(`/profile/${id}`)
                 
             })
             .catch((err) => {toast.error(err.message)});
@@ -99,7 +99,7 @@ const EditProfile = () => {
 
     return ( 
     <div>
-        <img src={`http://localhost:5000/uploads/${profilePicture}`} alt="" />
+        <img src={`http://localhost:5000/uploads/${profilePicture}`} alt="" style={{width: '150px', height: '150px'}}/>
         <form action="" encType="multipart/form-data">
             <label htmlFor="">First Name</label>
                 <input type="text" name = "firstName" required onChange={handleInputChange} value={firstName}/>
