@@ -31,6 +31,25 @@ const getUser = async (req, res) => {
 }
 
 
+//function to search for a user
+const searchUser = async (req, res) => {
+
+    const query = req.query.query
+
+    try{
+        const searchResults = await UserModel.find({
+            $or: [
+                {firstName: {$regex: query, $options: 'i'}},
+                {lastName: {$regex: query, $options: 'i'}}
+
+            ]
+        })
+        res.status(200).json(searchResults)
+    } catch (error) {
+        res.status(500).json( error)
+    }
+}
+
 
 // function to update a user
 const updateUser = async (req, res) => {
@@ -177,4 +196,4 @@ const unfollowUser = async (req, res) => {
 
 
 
-module.exports = {getUser, updateUser}
+module.exports = {getUser, updateUser, searchUser}

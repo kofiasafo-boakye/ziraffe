@@ -37,6 +37,10 @@ label{
     display: flex;
 }
 
+.active{
+    color: var(--primaryColor);
+    font-weight: bolder;
+  }
 /* button{
     background-color: var(--primaryColor);
     color: white;

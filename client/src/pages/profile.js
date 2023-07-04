@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
+import Navbar from "../components/navbar";
 
 
 const Profile = () => {
@@ -14,6 +15,7 @@ const Profile = () => {
 
     console.log("id:",id)
     console.log("user",user)
+
     // const {data: album} = useFetch('http://localhost:8000/albums/' + id)
 
     const handleSubmit = () => {
@@ -23,6 +25,7 @@ const Profile = () => {
 
     return ( 
         <div>
+            <Navbar></Navbar>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt="" style={{width: '150px', height: '150px'}}/>
@@ -30,6 +33,8 @@ const Profile = () => {
             <div>Last Name:  {user.lastName}</div>
             <div>Username:  {user.username}</div>
             <div>Email:  {user.email}</div>
+            <div>Followers: {user.followers && user.followers.length}</div>
+            <div>Following: {user.following && user.following.length}</div>
             <button onClick={handleSubmit}>Edit Details</button>
         </div>
      );
