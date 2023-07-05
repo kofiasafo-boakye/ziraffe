@@ -3,6 +3,7 @@ import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
+import { Link } from "react-router-dom";
 
 
 const Profile = () => {
@@ -20,7 +21,7 @@ const Profile = () => {
 
     const handleSubmit = () => {
         // console.log("id:",id)
-        navigate(`/EditProfile/${id}`)
+        navigate(`/profile/EditProfile/${id}`)
     }
 
     return ( 
@@ -35,7 +36,7 @@ const Profile = () => {
             <div>Email:  {user.email}</div>
             <div>Followers: {user.followers && user.followers.length}</div>
             <div>Following: {user.following && user.following.length}</div>
-            <button onClick={handleSubmit}>Edit Details</button>
+            <button onClick={handleSubmit}>Edit Details</button>            
         </div>
      );
 }

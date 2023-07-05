@@ -3,6 +3,8 @@ import {BACKEND_API} from "../api/backend_api"
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { toast } from "react-toastify";
+import Navbar from "../components/navbar";
+
 
 
 
@@ -23,8 +25,8 @@ const initialState = {
 const EditProfile = () => {
     const {id} = useParams()
 
-    const navigate = useNavigate()
-    const [data, setData] = useState([]); 
+    // const navigate = useNavigate()
+    // const [data, setData] = useState([]); 
     const [isPending, setIsPending] = useState(false)
 
     // const {data: user, isPending, error} = useFetch(`${BACKEND_API}/user/profile/${id}`)
@@ -85,7 +87,8 @@ const EditProfile = () => {
                 // setUsername("")
                 // setBio("")
                 toast.success("User updated successfully")
-                navigate(`/profile/${id}`)
+                // navigate(`/profile/${id}`)
+                window.location.reload()
                 
             })
             .catch((err) => {toast.error(err.message)});
@@ -99,6 +102,7 @@ const EditProfile = () => {
 
     return ( 
     <div>
+        <Navbar></Navbar>
         <img src={`http://localhost:5000/uploads/${profilePicture}`} alt="" style={{width: '150px', height: '150px'}}/>
         <form action="" encType="multipart/form-data">
             <label htmlFor="">First Name</label>

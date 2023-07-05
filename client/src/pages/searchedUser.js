@@ -1,35 +1,113 @@
 import Navbar from "../components/navbar";
 import {toast} from "react-toastify"
 import {BACKEND_API} from "../api/backend_api"
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 
 const SearchedUser = () => {
-    const [text, setText] = useState('Follow')
+    const [text, setText] = useState('')
     const {id} = useParams()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const [disabled, setDisabled] = useState(false)
     const {data: user, isPending, error} = useFetch(`${BACKEND_API}/user/profile/${id}`)
+    const [sId, setsId] = useState('')
 
     //id of user doing the following
-    const sId = getStoredIdFromLocalStorage()
+    
 
-    console.log(user)
 
-    if(user.followers && user.followers.includes(id)){
-        setText('unFollow')
-    }
+    useEffect(() => {
+        // console.log(user.followers && user.followers)
+        if(user.followers && user.followers.includes(sId)){
+            // console.log('hi')
+            setText('Unfollow')
+        }
+        else{
+            // console.log('no hi')
+            setText('Follow')
+        }
+        setsId(getStoredIdFromLocalStorage())
+    }, [user])
+
+
+    useEffect(() => {
+        if(id && id === sId){
+            setDisabled(true)
+            console.log('id', id)
+            console.log('sid', sId)
+            console.log(disabled)
+        }
+    }, [])
+
+    // useEffect(() => {
+    //     window.location.reload()
+    // }, [text])
+
+
 
     
 
-    const handleSubmit = () => {
-        if(text == 'follow'){
-            //dont forget to add the check that if the user in the params is the same as the one in the localstorage, then you wont be able to follow yourself, or better still, it should navigate straight your edit profile page if you click on your name from the search results
+    async function handleSubmit(){
+        // console.log(typeof(sId))
+        if(text === 'Follow'){
             //implement the FOLLOW code
+            try {
+                // console.log(`${BACKEND_API}/user/followUser/${id}`)
+                const response = await fetch(`${BACKEND_API}/user/followUser/${id}`, {
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sId
+                    }),
+                })
+
+                const data = await response.json()
+                console.log(data)
+                if(response.status !== 200){
+                    toast.error(data["message"])
+                  }
+                else{
+                    toast.success("User followed")
+                    window.location.reload()
+                    // navigate("/search")
+                }
+            }
+            catch(error){
+                toast.error(error)
+            }
         }
         else{
-            
+            try {
+                // console.log(`${BACKEND_API}/user/followUser/${id}`)
+                const response = await fetch(`${BACKEND_API}/user/unfollowUser/${id}`, {
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sId
+                    }),
+                })
+
+                const data = await response.json()
+                console.log(data)
+                if(response.status !== 200){
+                    toast.error(data["message"])
+                  }
+                else{
+                    toast.success("User unfollowed")
+                    window.location.reload()
+                }
+            }
+            catch(error){
+                toast.error(error)
+            }
         }
     }
 
@@ -46,7 +124,7 @@ const SearchedUser = () => {
             <div>Email:  {user.email}</div>
             <div>Followers: {user.followers && user.followers.length}</div>
             <div>Following: {user.following && user.following.length}</div>
-            <button>{text}</button>
+            <button disabled = {disabled} onClick={handleSubmit}>{text}</button>
         </div>
     );
 }

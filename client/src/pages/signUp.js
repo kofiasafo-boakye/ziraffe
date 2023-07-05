@@ -106,6 +106,7 @@ const SignUp = () => {
           toast.error(data["message"])
         }
         else{
+          toast.success("Sign up Successful")
           navigate("/")
         }
       }catch(error){

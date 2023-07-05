@@ -28,9 +28,9 @@ function App() {
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/home' element={<Home/>} />
         <Route path='/profile/:id' element={<Profile/>} />
+        <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
         <Route path='/search' element={<Search/>} />
         <Route path='/search/searchedUser/:id' element={<SearchedUser/>} />
-        <Route path='/EditProfile/:id' element={<EditProfile/>} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

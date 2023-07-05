@@ -120,13 +120,17 @@ const followUser = async (req, res) => {
     const id = req.params.id;
 
     // id of user who wants to follow another user
-    const {currentUserId} = req.body;
+    const currentUserId = req.body.sId;
 
-    if(currentUserId === id) {
-        res.status(403).json("Dont do that! You cannot follow yourself");
-    }
-    else{
-        /*its good to do try and catch when going into a database*/ 
+    console.log("utbf:", id)
+    console.log("uwwtfso:", currentUserId)
+    //console.log("req.body.sId", req.body.sId)
+
+    // if(currentUserId === id) {
+    //     res.status(403).json("Dont do that! You cannot follow yourself");
+    // }
+    // else{
+    //     /*its good to do try and catch when going into a database*/ 
         try {
             // user to be followed
             const followUser = await UserModel.findById(id)
@@ -149,7 +153,7 @@ const followUser = async (req, res) => {
         } catch (error) {
             res.status(400).json(error)
         }
-    }
+    // }
 
 }
 
@@ -161,24 +165,24 @@ const unfollowUser = async (req, res) => {
     const id = req.params.id;
 
     // id of user who wants to follow another user
-    const {currentUserId} = req.body;
+    const currentUserId = req.body.sId;
 
-    if(currentUserId === id) {
-        res.status(403).json("Dont do that! You cannot follow yourself");
-    }
-    else{
+    // if(currentUserId === id) {
+    //     res.status(403).json("Dont do that! You cannot follow yourself");
+    // }
+    // else{
         /*its good to do try and catch when going into a database*/ 
         try {
-            // user to be followed
-            const followUser = await UserModel.findById(id)
+            // user to be unfollowed
+            const unfollowUser = await UserModel.findById(id)
 
-            // user who wants to follow
-            const followingUser = await UserModel.findById(currentUserId)
+            // user who wants to unfollow
+            const unfollowingUser = await UserModel.findById(currentUserId)
 
 
-            if(!followUser.followers.includes(currentUserId)){
-                await followUser.updateOne({$pull: {followers : currentUserId}})
-                await followingUser.updateOne({$pull: {following : id}})
+            if(unfollowUser.followers.includes(currentUserId)){
+                await unfollowUser.updateOne({$pull: {followers : currentUserId}})
+                await unfollowingUser.updateOne({$pull: {following : id}})
 
                 res.status(200).json("User unFollowed")
             }
@@ -190,10 +194,10 @@ const unfollowUser = async (req, res) => {
         } catch (error) {
             res.status(400).json(error)
         }
-    }
+    // }
 
 }
 
 
 
-module.exports = {getUser, updateUser, searchUser}
+module.exports = {getUser, updateUser, searchUser, followUser, unfollowUser}
