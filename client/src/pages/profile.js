@@ -29,7 +29,7 @@ const Profile = () => {
             <Navbar></Navbar>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt="" style={{width: '150px', height: '150px'}}/>
+            <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '150px', height: '150px'}}/>
             <div>First Name:  {user.firstName}</div>
             <div>Last Name:  {user.lastName}</div>
             <div>Username:  {user.username}</div>

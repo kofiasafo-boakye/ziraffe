@@ -7,8 +7,13 @@ const Home = () => {
 
             <Navbar></Navbar>
             Home Page
-            
+
+            <div className="container">
+                {/* Other page content */}
+                <button className="fixed-button">Post</button>
             </div>
+            
+        </div>
     );
 }
  
