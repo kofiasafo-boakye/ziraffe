@@ -5,7 +5,8 @@ var PostModel = require('../models/postModel')
 
 //function to create a new post
 const createPost = async (req, res) => {
-    const newPost = new PostModel(req.body)
+    // const newPost = new PostModel(req.body) old code
+    const newPost = new PostModel({userId: req.body.userId, desc: req.body.caption, image: req.file.filename})
 
     try {
         await newPost.save()
@@ -13,6 +14,12 @@ const createPost = async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
+    // console.log(req.body)
+    // console.log(req.file)
+    // console.log('userId',req.body.userId)
+    // console.log('desc',req.body.caption)
+    // console.log('image',req.file.filename)
+
 }
 
 //function to get a post
@@ -46,6 +53,25 @@ const likePost = async (req, res) => {
             await post.updateOne({$pull: {likes: userId}})
             res.status(200).json("Post unliked")
         }
+    } catch (error) {
+        res.status(500).json(error)
+
+    }
+}
+
+// function to unlike a post
+const unlikePost = async () => {
+    const id = req.params.id
+
+    const {userId} = req.body
+
+    const post = await PostModel.findById(id)
+
+    try {
+
+        await post.updateOne({$pull: {likes: userId}})
+        res.status(200).json("Post unliked")
+        
     } catch (error) {
         res.status(500).json(error)
 
@@ -133,6 +159,6 @@ const getComments = async (req, res) => {
 }
 
 
-module.exports = {}
+module.exports = {createPost, getTimelinePosts}
 
 

@@ -25,7 +25,7 @@ const initialState = {
 const EditProfile = () => {
     const {id} = useParams()
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     // const [data, setData] = useState([]); 
     const [isPending, setIsPending] = useState(false)
 
@@ -52,6 +52,7 @@ const EditProfile = () => {
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
+        console.log(e.target)
         setState({...state, [name]: value})
         // console.log(state)
     
@@ -77,7 +78,7 @@ const EditProfile = () => {
             
             
             
-            Axios.post(`${BACKEND_API}/user//editProfile/${id}`, 
+            Axios.post(`${BACKEND_API}/user/editProfile/${id}`, 
                 formData
             )
             .then((response) => {
@@ -87,8 +88,8 @@ const EditProfile = () => {
                 // setUsername("")
                 // setBio("")
                 toast.success("User updated successfully")
-                // navigate(`/profile/${id}`)
-                window.location.reload()
+                navigate(`/profile/${id}`)
+                // window.location.reload()
                 
             })
             .catch((err) => {toast.error(err.message)});

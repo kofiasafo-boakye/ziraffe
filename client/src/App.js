@@ -8,6 +8,7 @@ import Home from "./pages/home";
 import Profile from "./pages/profile";
 import EditProfile from "./pages/editProfile";
 import Search from './pages/search';
+import CreatePost from './pages/createPost';
 import SearchedUser from './pages/searchedUser';
 // import Navbar from './components/navbar';
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/profile/:id' element={<Profile/>} />
         <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
         <Route path='/search' element={<Search/>} />
+        <Route path='/createPost' element={<CreatePost/>} />
         <Route path='/search/searchedUser/:id' element={<SearchedUser/>} />
         <Route path='*' element={<NotFound/>} />
       </Routes>

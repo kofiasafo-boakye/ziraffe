@@ -94,25 +94,6 @@ const updateUser = async (req, res) => {
 }
 
 
-// function to delete a user
-
-const deleteUser = async (req, res) => {
-    const id = req.params.id;
-
-    const {currentId, currentUserAdminStatus} = req.body;
-
-    if(id === currentId || currentUserAdminStatus){
-
-        try {
-            await UserModel.findByIdAndDelete(id)
-            res.status(200).json("User deleted successfully")
-        } catch (error) {
-            res.status(500).json( error)
-
-        }
-    }
-
-} 
 
 // function to follow a user
 const followUser = async (req, res) => {
@@ -197,6 +178,26 @@ const unfollowUser = async (req, res) => {
     // }
 
 }
+
+// function to delete a user
+
+const deleteUser = async (req, res) => {
+    const id = req.params.id;
+
+    const {currentId, currentUserAdminStatus} = req.body;
+
+    if(id === currentId || currentUserAdminStatus){
+
+        try {
+            await UserModel.findByIdAndDelete(id)
+            res.status(200).json("User deleted successfully")
+        } catch (error) {
+            res.status(500).json( error)
+
+        }
+    }
+
+} 
 
 
 

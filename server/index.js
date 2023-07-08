@@ -5,6 +5,8 @@ const connectDB = require("./config/db")
 const bodyParser = require("body-parser");
 const AuthRoute = require('./routes/AuthRoute.js')
 const UserRoute = require('./routes/UserRoute.js')
+const PostRoute = require('./routes/PostRoute.js')
+
 var cookieParser = require("cookie-parser")
 
 // import AuthRoute from './routes/AuthRoute.js'
@@ -26,6 +28,14 @@ app.use(cookieParser())
 app.use('/uploads', express.static('../client/src/uploads'))
 
 
+//auth route
+app.use('/auth', AuthRoute)
+
+// user route
+app.use('/user', UserRoute)
+
+// posts route
+app.use("/post", PostRoute)
 
 // app.post("/api/register", async (req, res) => {
 //     console.log(req.body)
@@ -65,11 +75,7 @@ app.use('/uploads', express.static('../client/src/uploads'))
 //     }
 // })
 
-//auth route
-app.use('/auth', AuthRoute)
 
-// user route
-app.use('/user', UserRoute)
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}...`)

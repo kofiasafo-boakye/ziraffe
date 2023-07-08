@@ -2,7 +2,7 @@ import { useState } from "react"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
-import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+// import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 
 
 
@@ -41,7 +41,7 @@ const Login = () => {
         e.preventDefault()
 
         if(!username || !password){
-            toast.error("Please enter all fields")
+            toast.error("Please fill all fields")
         }
         else{
             
@@ -73,12 +73,12 @@ const Login = () => {
                     // console.log("id:",id)
                     localStorage.setItem('myId', data["user"])
                     // const sId = localStorage.getItem('myId')
-                    const sId = getStoredIdFromLocalStorage()
+                    // const sId = getStoredIdFromLocalStorage()
                     // localStorage.removeItem('myId')
                     // navigate(`/profile/${sId}`)
                     navigate(`/home`)
                     // localStorage.setItem('myId', data["user"])
-                    console.log('storedId', localStorage.getItem('myId'))
+                    // console.log('storedId', localStorage.getItem('myId'))
                     // navigate(`/profile/${data["user"]}`)
                     
                     // console.log("data:",data["user"])
