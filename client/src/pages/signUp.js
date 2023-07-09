@@ -69,7 +69,7 @@ const SignUp = () => {
     e.preventDefault()
 
     if(!firstName || !lastName || !username || !email || !password || !confirmPassword){
-        toast.error("Please enter all fields")
+        toast.error("Please fill all fields")
     }
     else if(!isValidEmail(email)){
         toast.error("Please enter a valid email")

@@ -20,8 +20,8 @@ const Search = () => {
                 }
             })
             setSearchResults(response.data)
-            console.log(response)
-            console.log(response.data)
+            console.log("response:",response)
+            console.log("response.data:",response.data)
         } catch (error) {
             console.log(error)
             toast.error(error)
