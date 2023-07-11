@@ -117,6 +117,9 @@ const getTimelinePosts = async (req, res) => {
 }
 
 
+    
+
+
 //function to post a comment
 const postComment = async(req, res) => {
 

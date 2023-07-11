@@ -28,23 +28,23 @@ const Home = () => {
             <Navbar></Navbar>
             Home Page
             <div className="container">
-                {/* Other page content */}
+                {/* Other page content
                 {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>} 
                 {(!posts) && <div>No data</div>}
                 <div>
                 {
                     posts.map((post) => (
-                        // <Link to={`/search/searchedUser/${post._id}`}>
+                        
                         <div key={post._id}>
                         <li key={post._id}>{post.desc}</li>
                         <button>Add Comment</button>
                         <button>Comments</button>
                         </div>
-                        // </Link>
+                        
                     ))
                 }
-                </div>
+                </div> */}
                 <button className="fixed-button" onClick={handleClick}>Post</button>
             </div>
             
