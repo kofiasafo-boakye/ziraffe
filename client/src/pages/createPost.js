@@ -5,6 +5,8 @@ import Axios from "axios";
 import {BACKEND_API} from "../api/backend_api"
 import {toast} from "react-toastify"
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+import useFetch from "../hooks/useFetch";
+
 
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +21,11 @@ const CreatePost = () => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const navigate = useNavigate()
+    const USER_ID = getStoredIdFromLocalStorage()
+
+    const {data: user} = useFetch(`${BACKEND_API}/user/profile/${USER_ID}`)
+
+    console.log(user)
 
 
 
@@ -54,11 +61,19 @@ const CreatePost = () => {
             formData.append('userId',sId)
             formData.append('caption',caption)
             formData.append('image',selectedImage)
+            formData.append('firstName',user.firstName)
+            formData.append('lastName',user.lastName)
+            formData.append('username',user.username)
+            formData.append('profilePicture',user.profilePicture)
 
             // setIsPending(true)
             console.log(formData.get('userId'))
             console.log(formData.get('caption'))
             console.log(formData.get('image'))
+            console.log(formData.get('firstName'))
+            console.log(formData.get('lastName'))
+            console.log(formData.get('username'))
+            console.log(formData.get('profilePicture'))
 
             Axios.post(`${BACKEND_API}/post/`, 
                 formData
@@ -72,6 +87,9 @@ const CreatePost = () => {
                 
             })
             .catch((err) => {toast.error(err.message)});
+
+
+
 
             // setImagePreview(null);
             // //add set image to null

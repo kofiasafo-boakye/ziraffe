@@ -10,6 +10,7 @@ import EditProfile from "./pages/editProfile";
 import Search from './pages/search';
 import CreatePost from './pages/createPost';
 import SearchedUser from './pages/searchedUser';
+import AddComment from './pages/addComment';
 // import Navbar from './components/navbar';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/home' element={<Home/>} />
         <Route path='/profile/:id' element={<Profile/>} />
+        <Route path='/addComment/:id' element={<AddComment/>} />
         <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
         <Route path='/search' element={<Search/>} />
         <Route path='/createPost' element={<CreatePost/>} />

@@ -21,6 +21,8 @@ const Home = () => {
     const handleClick = () => {
         navigate('/createPost')
     }
+
+
     return ( 
 
         <div>
@@ -28,23 +30,23 @@ const Home = () => {
             <Navbar></Navbar>
             Home Page
             <div className="container">
-                {/* Other page content
+                {/* Other page content */}
                 {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>} 
-                {(!posts) && <div>No data</div>}
+                {/* {(posts && posts.length == 0) && <div>No data</div>} */}
                 <div>
                 {
                     posts.map((post) => (
                         
                         <div key={post._id}>
                         <li key={post._id}>{post.desc}</li>
-                        <button>Add Comment</button>
+                        <button onClick={() => navigate(`/addComment/${post._id}`)}>Add Comment</button>
                         <button>Comments</button>
                         </div>
                         
                     ))
                 }
-                </div> */}
+                </div>
                 <button className="fixed-button" onClick={handleClick}>Post</button>
             </div>
             

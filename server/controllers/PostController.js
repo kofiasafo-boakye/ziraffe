@@ -6,7 +6,7 @@ var PostModel = require('../models/postModel')
 //function to create a new post
 const createPost = async (req, res) => {
     // const newPost = new PostModel(req.body) old code
-    const newPost = new PostModel({userId: req.body.userId, desc: req.body.caption, image: req.file.filename})
+    const newPost = new PostModel({userId: req.body.userId, desc: req.body.caption, image: req.file.filename, firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username, profilePicture: req.body.profilePicture})
 
     try {
         await newPost.save()
@@ -122,7 +122,8 @@ const getTimelinePosts = async (req, res) => {
 
 //function to post a comment
 const postComment = async(req, res) => {
-
+    const id = req.params.id
+    console.log(req.body)
     // PostModel.findByIdAndUpdate(
     //     postId,
     //     {
@@ -162,6 +163,6 @@ const getComments = async (req, res) => {
 }
 
 
-module.exports = {createPost, getTimelinePosts}
+module.exports = {createPost, getTimelinePosts, getPost, postComment}
 
 
