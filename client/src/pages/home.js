@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+import {toast} from "react-toastify"
+
 
 
 
@@ -22,6 +24,38 @@ const Home = () => {
         navigate('/createPost')
     }
 
+    async function handleLike (postId){
+        // console.log(postId)
+        try{
+            const response = await fetch(`${BACKEND_API}/post/likePost/${postId}`, {
+                method: "POST",
+                credentials: 'include',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sId
+                }),
+            })
+
+            const data = await response.json()
+            console.log(response)
+            if(response.status !== 200){
+                toast.error("error")
+              }
+            else{
+                toast.success(data)
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 5000)
+                // navigate("/search")
+            }
+            
+        }
+        catch(error){
+            toast.error(error)
+        }
+    }
 
     return ( 
 
@@ -42,6 +76,7 @@ const Home = () => {
                         <li key={post._id}>{post.desc}</li>
                         <button onClick={() => navigate(`/addComment/${post._id}`)}>Add Comment</button>
                         <button>Comments</button>
+                        <button onClick={() => handleLike(post._id)}>Like</button>
                         </div>
                         
                     ))

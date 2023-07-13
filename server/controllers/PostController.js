@@ -40,7 +40,11 @@ const getPost = async (req, res) => {
 const likePost = async (req, res) => {
     const id = req.params.id
 
-    const {userId} = req.body
+    const userId = req.body.sId
+
+    // console.log(req.body)
+    // console.log('id', id)
+    // console.log('userid', userId)
 
     const post = await PostModel.findById(id)
 
@@ -59,24 +63,7 @@ const likePost = async (req, res) => {
     }
 }
 
-// function to unlike a post
-const unlikePost = async () => {
-    const id = req.params.id
 
-    const {userId} = req.body
-
-    const post = await PostModel.findById(id)
-
-    try {
-
-        await post.updateOne({$pull: {likes: userId}})
-        res.status(200).json("Post unliked")
-        
-    } catch (error) {
-        res.status(500).json(error)
-
-    }
-}
 
 
 // function to get Timeline Posts
@@ -122,26 +109,47 @@ const getTimelinePosts = async (req, res) => {
 
 //function to post a comment
 const postComment = async(req, res) => {
-    const id = req.params.id
+    const postId = req.params.id
+
+    const post = await PostModel.findById(postId)
+    
     console.log(req.body)
-    // PostModel.findByIdAndUpdate(
-    //     postId,
-    //     {
-    //       $push: {
-    //         comments: {
-    //           userId: userId,
-    //           text: commentText,
-    //         },
-    //       },
-    //     },
-    //     { new: true }
-    //   )
-    //     .then(updatedPost => {
-    //       console.log(updatedPost);
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
+    console.log(req.body.sId)
+    try{
+        await post.updateOne({$push: {
+            comments: {
+              userId: req.body.sId,
+              text: req.body.comment,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              username: req.body.username,
+              profilePicture: req.body.profilePicture
+
+            },
+          },})
+        // PostModel.findByIdAndUpdate(
+        //     postId,
+        //     {
+        //       $push: {
+        //         comments: {
+        //           userId: req.body.sId,
+        //           text: req.body.comment,
+        //           firstName: req.body.firstName,
+        //           lastName: req.body.lastName,
+        //           username: req.body.username,
+        //           profilePicture: req.body.profilePicture
+
+        //         },
+        //       },
+        //     },
+        //     { new: true }
+        // )
+        res.status(200).json("Comment successful")
+      
+    }catch (error) {
+        res.status(500).json(error)
+    }
+    
 }
 
 
@@ -163,6 +171,6 @@ const getComments = async (req, res) => {
 }
 
 
-module.exports = {createPost, getTimelinePosts, getPost, postComment}
+module.exports = {createPost, getTimelinePosts, getPost, postComment, likePost, getComments}
 
 

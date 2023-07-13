@@ -23,7 +23,7 @@ const AddComment = () => {
         setComment(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if(!comment){
@@ -31,34 +31,65 @@ const AddComment = () => {
         }
         else{
 
-            const sId = getStoredIdFromLocalStorage()
-            const formData = new FormData()
-            formData.append('userId',sId)
-            formData.append('comment',comment)
-            formData.append('firstName',user.firstName)
-            formData.append('lastName',user.lastName)
-            formData.append('username',user.username)
-            formData.append('profilePicture',user.profilePicture)
+            // const sId = getStoredIdFromLocalStorage()
+            // const formData = new FormData()
+            // formData.append('userId',sId)
+            // formData.append('comment',comment)
+            // formData.append('firstName',user.firstName)
+            // formData.append('lastName',user.lastName)
+            // formData.append('username',user.username)
+            // formData.append('profilePicture',user.profilePicture)
 
-            console.log(formData.get('userId'))
-            console.log(formData.get('comment'))
-            console.log(formData.get('firstName'))
-            console.log(formData.get('lastName'))
-            console.log(formData.get('username'))
-            console.log(formData.get('profilePicture'))
+            // console.log(formData.get('userId'))
+            // console.log(formData.get('comment'))
+            // console.log(formData.get('firstName'))
+            // console.log(formData.get('lastName'))
+            // console.log(formData.get('username'))
+            // console.log(formData.get('profilePicture'))
 
             Axios.post(`${BACKEND_API}/post/addComment/${id}`, 
-                formData
+            {
+                            sId: sId,
+                            comment: comment,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            username: user.username,
+                            profilePicture: user.profilePicture
+                        }
             )
             .then((response) => {
                 setIsPending(false)
                 console.log(response)
 
-                toast.success("Post successful")
-                // navigate(`/home`)
+                toast.success("Comment successful")
+                navigate(`/home`)
 
             })
             .catch((err) => {toast.error(err.message)});
+
+            // try{
+            //     const response = await fetch(`${BACKEND_API}/post/addComment/${id}`, {
+            //         method: "POST",
+            //         credentials: 'include',
+            //         headers: {
+            //           'Content-Type': 'application/json'
+            //         },
+            //         body: JSON.stringify({
+            //             sId: sId,
+            //             comment: comment,
+            //             firstName: user.firstName,
+            //             lastName: user.lastName,
+            //             username: user.username,
+            //             profilePicture: user.profilePicture
+            //         }),
+            //       })
+            // }
+            // catch(error){
+            //     toast.error(error)
+            // }
+
+
+            
 
         }
     }

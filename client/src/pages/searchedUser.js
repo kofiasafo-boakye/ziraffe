@@ -29,17 +29,26 @@ const SearchedUser = () => {
             setText('Follow')
         }
         setsId(getStoredIdFromLocalStorage())
-    }, [user])
 
-
-    useEffect(() => {
         if(id && id === sId){
             setDisabled(true)
             console.log('id', id)
             console.log('sid', sId)
             console.log(disabled)
         }
-    }, [])
+    }, [user])
+
+
+    // useEffect(() => {
+    //     if(id && id === sId){
+    //         console.log('id', id) //when you remove this it doesnt work
+    //         console.log('sid', sId) //when you remove this it doesnt work
+    //         setDisabled(true)
+    //         console.log('id', id)
+    //         console.log('sid', sId)
+    //         console.log(disabled)
+    //     }
+    // }, [])
 
     // useEffect(() => {
     //     window.location.reload()
