@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar";
-import { useState, useRef} from "react"
+import { useState, useEffect, useRef} from "react"
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import {BACKEND_API} from "../api/backend_api"
@@ -22,10 +22,17 @@ const CreatePost = () => {
     const [isPending, setIsPending] = useState(false)
     const navigate = useNavigate()
     const USER_ID = getStoredIdFromLocalStorage()
+    
 
     const {data: user} = useFetch(`${BACKEND_API}/user/profile/${USER_ID}`)
 
     console.log(user)
+
+    useEffect (() => {
+        if(!USER_ID){
+            navigate('/')
+        }
+    }, [])
 
 
 

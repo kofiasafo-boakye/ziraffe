@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar";
 import {toast} from "react-toastify"
 import {BACKEND_API} from "../api/backend_api"
-import { useParams} from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
@@ -13,9 +13,16 @@ const SearchedUser = () => {
     const [disabled, setDisabled] = useState(false)
     const {data: user, isPending, error} = useFetch(`${BACKEND_API}/user/profile/${id}`)
     const [sId, setsId] = useState('')
+    const userId = getStoredIdFromLocalStorage()
+    const navigate = useNavigate()
 
-    //id of user doing the following
-    
+
+
+    useEffect (() => {
+        if(!userId){
+            navigate('/')
+        }
+    }, [])    
 
 
     useEffect(() => {

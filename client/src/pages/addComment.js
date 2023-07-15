@@ -17,6 +17,12 @@ const AddComment = () => {
     const {data: post} = useFetch(`${BACKEND_API}/post/${id}`)
     const {data: user} = useFetch(`${BACKEND_API}/user/profile/${sId}`)
 
+    useEffect (() => {
+        if(!sId){
+            navigate('/')
+        }
+    }, [])
+
     console.log(post)
 
     const inputComment = (e) => {

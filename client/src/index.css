@@ -2,12 +2,18 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
+}
+
+
+.content {
+    max-width: 600px;
+    margin: 40px auto;
+    /* padding: 20px; */
 }
 
 :root {
-    --primaryColor: #b128db;
-    --hoverColor: #4c4aa3;
+    --primaryColor: #28afb0;
 }
 
 .signup{
@@ -37,10 +43,6 @@ label{
     display: flex;
 }
 
-.active{
-    color: var(--primaryColor);
-    font-weight: bolder;
-  }
 /* button{
     background-color: var(--primaryColor);
     color: white;
@@ -58,3 +60,46 @@ label{
     right: 20px;
     /* Add other styles as needed */
 }
+
+/* NAVIGATION BAR */
+
+nav{
+    justify-content: center;
+    margin-bottom: 40px;
+    
+ }
+
+.navbar{
+    /* padding: 20px; */
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.nav-link{
+    font-size: 24px;
+    margin-right: 60px;
+    /* justify-content: space-between; */
+    color: rgb(87, 77, 77);
+}
+
+.nav-link:hover{
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+.active{
+    color: var(--primaryColor);
+    font-weight: bolder;
+}
+
+.logo{
+    color: var(--primaryColor);
+    margin-right: 40px;
+    font-size: 30px;
+    font-family:  calibri;
+}
+
+
+
+

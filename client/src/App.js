@@ -23,20 +23,21 @@ function App() {
       {/* <Navbar></Navbar> */}
       <ToastContainer position="top-center"></ToastContainer>
 
-
-      <Routes>
-        <Route path='/' element={<Login/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<SignUp/>} />
-        <Route path='/home' element={<Home/>} />
-        <Route path='/profile/:id' element={<Profile/>} />
-        <Route path='/addComment/:id' element={<AddComment/>} />
-        <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
-        <Route path='/search' element={<Search/>} />
-        <Route path='/createPost' element={<CreatePost/>} />
-        <Route path='/search/searchedUser/:id' element={<SearchedUser/>} />
-        <Route path='*' element={<NotFound/>} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path='/' element={<Login/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/signup' element={<SignUp/>} />
+          <Route path='/home' element={<Home/>} />
+          <Route path='/profile/:id' element={<Profile/>} />
+          <Route path='/addComment/:id' element={<AddComment/>} />
+          <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
+          <Route path='/search' element={<Search/>} />
+          <Route path='/createPost' element={<CreatePost/>} />
+          <Route path='/search/searchedUser/:id' element={<SearchedUser/>} />
+          <Route path='*' element={<NotFound/>} />
+        </Routes>
+        </div>  
     </div>
   );
 }

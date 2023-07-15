@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
-
-
-
+import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 
 
 const initialState = {
@@ -23,6 +21,8 @@ const initialState = {
 
 
 const EditProfile = () => {
+    const sId = getStoredIdFromLocalStorage()
+
     const {id} = useParams()
 
     const navigate = useNavigate()
@@ -37,6 +37,12 @@ const EditProfile = () => {
     console.log(profilePicture)
 
     const url = `${BACKEND_API}/user/profile/${id}`
+
+    useEffect (() => {
+        if(!sId){
+            navigate('/')
+        }
+    }, [])
 
     useEffect(() => {
         Axios.get(url)

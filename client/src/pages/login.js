@@ -95,7 +95,7 @@ const Login = () => {
 
     return ( 
         <div className="signup">
-            <h1>Ziraffe</h1>
+            <h1>Sovichete</h1>
                 <form action="" onSubmit={handleSubmit}>
                 <label>Username</label>
                 <div>

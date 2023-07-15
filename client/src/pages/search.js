@@ -1,15 +1,26 @@
 import Navbar from "../components/navbar";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import {toast} from "react-toastify"
 import {BACKEND_API} from "../api/backend_api"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+
 
 
 const Search = () => {
 
     const [searchQuery, setSearchQuery] = useState('')
     const [searchResults, setSearchResults] = useState([])
+    const navigate = useNavigate()
+    const sId = getStoredIdFromLocalStorage()
+
+    useEffect (() => {
+        if(!sId){
+            navigate('/')
+        }
+    }, [])
+
 
     const handleSearch = async (query) => {
         try{

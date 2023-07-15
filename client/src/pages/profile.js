@@ -4,6 +4,8 @@ import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
+import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+
 
 
 const Profile = () => {
@@ -11,6 +13,8 @@ const Profile = () => {
 
     const navigate = useNavigate()
     const [data, setData] = useState([]); 
+    const sId = getStoredIdFromLocalStorage()
+
 
     const {data: user, isPending, error} = useFetch(`${BACKEND_API}/user/profile/${id}`)
 
@@ -18,6 +22,12 @@ const Profile = () => {
     console.log("user",user)
 
     // const {data: album} = useFetch('http://localhost:8000/albums/' + id)
+
+    useEffect (() => {
+        if(!sId){
+            navigate('/')
+        }
+    }, [])
 
     const handleSubmit = () => {
         // console.log("id:",id)
