@@ -13,6 +13,12 @@ const Home = () => {
     const navigate = useNavigate()
     const sId = getStoredIdFromLocalStorage()
 
+    useEffect (() => {
+        if(!sId){
+            navigate('/')
+        }
+    }, [])
+
     const {data: posts, isPending, error} = useFetch(`${BACKEND_API}/post/timeline/${sId}`)
 
     // useEffect hook to get the data of the user

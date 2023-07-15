@@ -1,10 +1,15 @@
-import {NavLink} from  "react-router-dom";
+import {NavLink, useNavigate} from  "react-router-dom";
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 
 
 const Navbar = () => {
-
+    const navigate = useNavigate()
     const sId = getStoredIdFromLocalStorage()
+
+    const handleClick = () => {
+        localStorage.removeItem('myId')
+        navigate('/')
+    }
     
     return ( 
         <nav className="navbar">
@@ -16,7 +21,7 @@ const Navbar = () => {
                 <NavLink to="/home">Home</NavLink>
                 <NavLink to={`/search`}>Search</NavLink>
                 <NavLink to={`/profile/${sId}`}>Profile</NavLink>
-                <button>Logout</button>
+                <button onClick={handleClick}>Logout</button>
                 {/* <NavLink to="/Add" >Add Album</NavLink> */}
             </div>
         </nav>
