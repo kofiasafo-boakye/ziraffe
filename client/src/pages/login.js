@@ -3,13 +3,15 @@ import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 // import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 
 
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordType, setPasswordType] = useState('password')
+    const [passwordVisible, setPasswordVisible] = useState(false)
     // const [id, setId] = useState("")
     
     // const storedId = getStoredIdFromLocalStorage()
@@ -27,13 +29,7 @@ const Login = () => {
     }
 
     const togglePassword = () => {
-        if (passwordType === 'password'){
-          setPasswordType('text')
-          return
-        }
-        else{
-          setPasswordType('password')
-        }
+        setPasswordVisible(!passwordVisible);
     }
     // let response;
 
@@ -95,7 +91,7 @@ const Login = () => {
 
     return ( 
         <div className="signup">
-            <h1>Sovichete</h1>
+            <h1 className="form-logo">Sovichete</h1>
                 <form action="" onSubmit={handleSubmit}>
                 <label>Username</label>
                 <div>
@@ -103,7 +99,7 @@ const Login = () => {
                 </div>
                 <label>Password</label>
                 <div>
-                    <input type={passwordType} placeholder="password" value={password} onChange = {inputPassword}/><button type="button" onClick={togglePassword}>view</button>
+                    <input type={passwordVisible ? "text" : "password"} placeholder="password" value={password} onChange = {inputPassword}/><div className="pwd" onClick={togglePassword}><FontAwesomeIcon style={{ color: "grey", fontSize: "12px" }} icon={passwordVisible ? faEyeSlash : faEye} /></div>
                 </div>
                 <button type="submit">Log in</button>
                 <p>Don't have an account?<Link to='/signup'>Sign Up</Link></p>

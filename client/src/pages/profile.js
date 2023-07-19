@@ -37,16 +37,23 @@ const Profile = () => {
     return ( 
         <div>
             <Navbar></Navbar>
-            {error && <div>{error}</div>}
-            {isPending && <div>Loading...</div>}
-            <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '150px', height: '150px'}}/>
-            <div>First Name:  {user.firstName}</div>
-            <div>Last Name:  {user.lastName}</div>
-            <div>Username:  {user.username}</div>
-            <div>Email:  {user.email}</div>
-            <div>Followers: {user.followers && user.followers.length}</div>
-            <div>Following: {user.following && user.following.length}</div>
-            <button onClick={handleSubmit}>Edit Details</button>            
+            <div>
+                <h2 style={{ textAlign: "center" }}>My Profile</h2>
+                <br />
+                <div className="profile">
+                    {error && <div>{error}</div>}
+                    {isPending && <div>Loading...</div>}
+                    <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '80px', height: '80px'}}/>
+                    <br />
+                    <div>{user.firstName}</div>
+                    <div>{user.lastName}</div>
+                    <div>@{user.username}</div>
+                    <div>{user.email}</div>
+                    <div>{user.followers && user.followers.length} followers</div>
+                    <div>{user.following && user.following.length} following</div>
+                    <button onClick={handleSubmit}>Edit Details</button> 
+                </div>  
+            </div>             
         </div>
      );
 }

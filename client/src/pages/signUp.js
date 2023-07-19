@@ -2,6 +2,8 @@ import { useState } from "react"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 
 const SignUp = () => {
@@ -11,9 +13,9 @@ const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [passwordType, setPasswordType] = useState('password')
-  const [passwordType2, setPasswordType2] = useState('password')
   const profilePicture = "profile_picture.jpg"
+  const [password1Visible, setPassword1Visible] = useState(false);
+  const [password2Visible, setPassword2Visible] = useState(false);
 
   const navigate = useNavigate();//for programatic redirecting
 
@@ -42,22 +44,10 @@ const SignUp = () => {
     setConfirmPassword(e.target.value)
   }
   const togglePassword = () => {
-    if (passwordType === 'password'){
-      setPasswordType('text')
-      return
-    }
-    else{
-      setPasswordType('password')
-    }
+    setPassword1Visible(!password1Visible);
   }
   const togglePassword2 = () => {
-    if (passwordType2 === 'password'){
-      setPasswordType2('text')
-      return
-    }
-    else{
-      setPasswordType2('password')
-    }
+    setPassword2Visible(!password2Visible);
   }
 
   const isValidEmail = (inputEmail) => { 
@@ -121,36 +111,36 @@ const SignUp = () => {
 
     return ( 
         <div className="signup">
-            <h1>Sovichete</h1>
+            <h1 className="form-logo">Sovichete</h1>
             <form action="" onSubmit={handleSubmit}>
-            <label>First name</label>
-            <div>
-                <input type="text" placeholder="first name" value={firstName} onChange = {inputFirstName}/>
-            </div>
-            <label>Last name</label>
-            <div>
-                <input type="text" placeholder="last name" value={lastName} onChange = {inputLastName}/>
-            </div>
-            <label>Username</label>
-            <div>
-                <input type="text" placeholder="username" value={username} onChange = {inputUsername}/>
-            </div>
-            <label>Email</label>
-            <div>
-                <input type="text" placeholder="email" value={email} onChange = {inputEmail}/>
-            </div>
-            
-            <label>Password</label>
-            <div>
-                <input type={passwordType} placeholder="password" value={password} onChange = {inputPassword}/><button type="button" onClick={togglePassword}>view</button>
-            </div>
-            <label>Confirm Password</label>
-            <div>
-                <input type={passwordType2} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><button type="button" onClick={togglePassword2}>view</button>
-            </div>
-            
-            <button type="submit">Sign Up</button>
-            <p>Already have an account?<Link to='/'>Sign In</Link></p>
+              <label>First name</label>
+              <div>
+                  <input type="text" placeholder="first name" value={firstName} onChange = {inputFirstName}/>
+              </div>
+              <label>Last name</label>
+              <div>
+                  <input type="text" placeholder="last name" value={lastName} onChange = {inputLastName}/>
+              </div>
+              <label>Username</label>
+              <div>
+                  <input type="text" placeholder="username" value={username} onChange = {inputUsername}/>
+              </div>
+              <label>Email</label>
+              <div>
+                  <input type="text" placeholder="email" value={email} onChange = {inputEmail}/>
+              </div>
+              
+              <label>Password</label>
+              <div>
+                  <input type={password1Visible ? "text" : "password"} placeholder="password" value={password} onChange = {inputPassword}/><div className="pwd" onClick={togglePassword}><FontAwesomeIcon style={{ color: "grey", fontSize: "12px" }} icon={password1Visible ? faEyeSlash : faEye} /></div>
+              </div>
+              <label>Confirm Password</label>
+              <div>
+                  <input type={password2Visible ? "text" : "password"} placeholder="Confirm Password" value={confirmPassword} onChange = {inputConfirmPassword}/><div className="pwd" onClick={togglePassword2}><FontAwesomeIcon  style={{ color: "grey", fontSize: "12px" }} icon={password2Visible ? faEyeSlash : faEye} /></div>
+              </div>
+              {/* <br /> */}
+              <button type="submit">Sign Up</button>
+              <p>Already have an account?<Link to='/'>Sign In</Link></p>
             </form>
         </div>
 

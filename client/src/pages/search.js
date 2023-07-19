@@ -56,17 +56,21 @@ const Search = () => {
 
         <div>
             <Navbar></Navbar>
-            Search Page
-
-            <input type="text" value={searchQuery} onChange={handleChange} placeholder="Find users..."/>
-            <div>
-                {
-                    searchResults.map((result) => (
-                        <Link to={`/search/searchedUser/${result._id}`}>
-                        <li key={result._id}>{result.firstName}</li>
-                        </Link>
-                    ))
-                }
+            <div className="search">
+                <h2 style={{ textAlign: "center" }}>Find Users</h2>
+                <br />
+                <div className="searchInput">
+                    <input type="text" value={searchQuery} onChange={handleChange} placeholder="Find users..."/>
+                </div>
+                <div className="searchResults">
+                    {
+                        searchResults.map((result) => (
+                            <Link to={`/search/searchedUser/${result._id}`}>
+                            <li key={result._id}>{result.firstName}</li>
+                            </Link>
+                        ))
+                    }
+                </div>
             </div>
         
         </div>

@@ -108,24 +108,36 @@ const EditProfile = () => {
     }
 
     return ( 
-    <div>
-        <Navbar></Navbar>
-        <img src={`http://localhost:5000/uploads/${profilePicture}`} alt=" " style={{width: '150px', height: '150px'}}/>
-        <form action="" encType="multipart/form-data">
-            <label htmlFor="">First Name</label>
-                <input type="text" name = "firstName" required onChange={handleInputChange} value={firstName}/>
-            <label htmlFor="">Last Name</label>
-                <input type="text" name = "lastName" required onChange={handleInputChange} value={lastName}/>
-            {/* <label htmlFor="">Username</label>
-                <input type="text" name = "userame" required onChange={handleInputChange} value={username}/> */}
-            <label htmlFor="">Email</label>
-                <input type="text" name = "email" required onChange={handleInputChange} value={email}/>
-            <label htmlFor="">Change your profile photo</label>
-                <input type="file" onChange={(e) => setImage(e.target.files[0])} required/>
-            <br /> 
-            {isPending && <button >Editing...</button>}
-            {!isPending && <button onClick={handleSubmit}>Edit</button>}
-        </form>
+        <div >
+            <Navbar></Navbar>
+            <div className="editProfile">
+            <h2>My Profile</h2>
+                <br />
+                <img src={`http://localhost:5000/uploads/${profilePicture}`} alt=" " style={{width: '90px', height: '90px'}}/>
+                <form action="" encType="multipart/form-data">
+                    <label htmlFor="">First Name</label>
+                        <div>
+                            <input type="text" name = "firstName" required onChange={handleInputChange} value={firstName}/>
+                        </div>
+                    <label htmlFor="">Last Name</label>
+                        <div>
+                            <input type="text" name = "lastName" required onChange={handleInputChange} value={lastName}/>
+                        </div>
+                    {/* <label htmlFor="">Username</label>
+                        <input type="text" name = "userame" required onChange={handleInputChange} value={username}/> */}
+                    <label htmlFor="">Email</label>
+                        <div>
+                            <input type="text" name = "email" required onChange={handleInputChange} value={email}/>
+                        </div>
+                    <label htmlFor="">Change your profile photo</label>
+                        <div>
+                            <input type="file" onChange={(e) => setImage(e.target.files[0])} required/>
+                        </div>
+                     
+                    {isPending && <button >Editing...</button>}
+                    {!isPending && <button onClick={handleSubmit}>Edit</button>}
+                </form>
+            </div>
         </div>
     );
 }
