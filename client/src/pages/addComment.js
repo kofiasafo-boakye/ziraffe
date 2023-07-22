@@ -113,7 +113,7 @@ const AddComment = () => {
             <div className="comments">
                 <br />
                 <span><strong>{post.likes && post.likes.length}</strong> like(s) | </span>
-                <span><strong>{post.comments && post.comments.length}</strong> comments </span>
+                <span><strong>{post.comments && post.comments.length}</strong> comment(s) </span>
             </div>
             <span><strong>{post.username}</strong> </span>
             <span key={post._id}>{post.desc}</span>

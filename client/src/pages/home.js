@@ -92,13 +92,13 @@ const Home = () => {
                         <button onClick={() => handleLike(post._id)}>Like</button> */}
                         <div className="icons">
                             <span onClick={() => navigate(`/addComment/${post._id}`)}><FontAwesomeIcon icon={faComment} size="2x"/></span>
-                            <span><FontAwesomeIcon icon={faComments} size="2x"/></span>
+                            <span onClick={() => navigate(`/Comments/${post._id}`)}><FontAwesomeIcon icon={faComments} size="2x"/></span>
                             <span onClick={() => handleLike(post._id)}><FontAwesomeIcon icon={faHeart} size="2x"/></span>
                         </div>
                         {/* <br /> */}
                         <div className="about">
                             <span><strong>{post.likes && post.likes.length}</strong> like(s) | </span>
-                            <span><strong>{post.comments && post.comments.length}</strong> comments </span>
+                            <span><strong>{post.comments && post.comments.length}</strong> comment(s) </span>
                             <span className="date">{post.createdAt.slice(0,10)}</span>
 
                         </div>

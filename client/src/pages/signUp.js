@@ -141,7 +141,7 @@ const SignUp = () => {
               </div>
               {/* <br /> */}
               <button type="submit">Sign Up</button>
-              <p>Already have an account?<Link to='/'>Sign In</Link></p>
+              <p>Already have an account? <Link to='/'>Sign In</Link></p>
             </form>
         </div>
 

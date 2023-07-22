@@ -11,6 +11,7 @@ import Search from './pages/search';
 import CreatePost from './pages/createPost';
 import SearchedUser from './pages/searchedUser';
 import AddComment from './pages/addComment';
+import Comments from './pages/comments';
 // import Navbar from './components/navbar';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/home' element={<Home/>} />
           <Route path='/profile/:id' element={<Profile/>} />
           <Route path='/addComment/:id' element={<AddComment/>} />
+          <Route path='/Comments/:id' element={<Comments/>} />
           <Route path='/profile/EditProfile/:id' element={<EditProfile/>} />
           <Route path='/search' element={<Search/>} />
           <Route path='/createPost' element={<CreatePost/>} />

@@ -103,7 +103,7 @@ const Login = () => {
                     <input type={passwordVisible ? "text" : "password"} placeholder="password" value={password} onChange = {inputPassword}/><div className="pwd" onClick={togglePassword}><FontAwesomeIcon style={{ color: "grey", fontSize: "12px" }} icon={passwordVisible ? faEyeSlash : faEye} /></div>
                 </div>
                 <button type="submit">Log in</button>
-                <p>Don't have an account?<Link to='/signup'>Sign Up</Link></p>
+                <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
             </form>
         </div>
      );
