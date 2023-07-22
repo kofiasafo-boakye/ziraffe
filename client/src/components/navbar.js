@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
                 {/* <NavLink to="/home">Home</NavLink> */}
-                <NavLink to="/home" className="nav-link"><FontAwesomeIcon icon={faHome} size="24px"/></NavLink>
+                <NavLink to="/home" className="nav-link"><FontAwesomeIcon icon={faHome}/></NavLink>
                 {/* <NavLink to={`/search`}>Search</NavLink> */}
                 <NavLink to={`/search`} className="nav-link"><FontAwesomeIcon icon={faSearch} /></NavLink>
                 {/* <NavLink to={`/profile/${sId}`}>Profile</NavLink> */}

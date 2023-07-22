@@ -5,6 +5,7 @@ import {BACKEND_API} from "../api/backend_api"
 // import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {faInstagram} from "@fortawesome/free-brands-svg-icons"
 
 
 
@@ -91,7 +92,7 @@ const Login = () => {
 
     return ( 
         <div className="signup">
-            <h1 className="form-logo">Sovichete</h1>
+            <h1 className="form-logo"><FontAwesomeIcon icon={faInstagram} /> Sovichete </h1>
                 <form action="" onSubmit={handleSubmit}>
                 <label>Username</label>
                 <div>

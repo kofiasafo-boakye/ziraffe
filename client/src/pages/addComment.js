@@ -13,8 +13,8 @@ const AddComment = () => {
     const navigate = useNavigate();
     const {id} = useParams()
     const sId = getStoredIdFromLocalStorage()
-    const [isPending, setIsPending] = useState(false)
-    const {data: post} = useFetch(`${BACKEND_API}/post/${id}`)
+    const [isLoading, setIsLoading] = useState(false) //for the form button
+    const {data: post, isPending, error} = useFetch(`${BACKEND_API}/post/${id}`)
     const {data: user} = useFetch(`${BACKEND_API}/user/profile/${sId}`)
 
     useEffect (() => {
@@ -64,7 +64,7 @@ const AddComment = () => {
                         }
             )
             .then((response) => {
-                setIsPending(false)
+                setIsLoading(false)
                 console.log(response)
 
                 toast.success("Comment successful")
@@ -102,12 +102,30 @@ const AddComment = () => {
     return ( 
         <div>
             <Navbar></Navbar>
-            Add a comment
-            <form action="" encType="multipart/form-data">
-                <label htmlFor="">Enter a comment</label>
-                    <input type="text" name="comment" required onChange={inputComment} placeholder="Comment..." value={comment}/>
-                <button onClick={handleSubmit}>Comment</button>
-            </form>
+            <h2 style={{ textAlign: "center" }} className="header">Add a comment</h2>
+            <br /> <br />
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+            <div className="image">
+                <img src={`http://localhost:5000/uploads/${post.image}`} alt=" " />
+
+            </div>
+            <div className="comments">
+                <br />
+                <span><strong>{post.likes && post.likes.length}</strong> like(s) | </span>
+                <span><strong>{post.comments && post.comments.length}</strong> comments </span>
+            </div>
+            <span><strong>{post.username}</strong> </span>
+            <span key={post._id}>{post.desc}</span>
+            <br /><br /> <hr /><br />
+            <div className="addComment">
+                <br />
+                <form action="" encType="multipart/form-data">
+                    {/* <label htmlFor="">Enter a comment</label> */}
+                        <input type="text" name="comment" required onChange={inputComment} placeholder="Comment..." value={comment}/>
+                    <button onClick={handleSubmit}>Comment</button>
+                </form>
+            </div>
         </div>
      );
 }

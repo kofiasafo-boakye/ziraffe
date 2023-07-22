@@ -5,6 +5,8 @@ import {BACKEND_API} from "../api/backend_api"
 import useFetch from "../hooks/useFetch";
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 import {toast} from "react-toastify"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faComments, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -68,21 +70,42 @@ const Home = () => {
         <div>
 
             <Navbar></Navbar>
-            Home Page
+            <h2 style={{ textAlign: "center" }} className="header">Home</h2>
+            <br /> <br />
             <div className="container">
                 {/* Other page content */}
                 {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>} 
                 {/* {(posts && posts.length == 0) && <div>No data</div>} */}
-                <div>
+                <div className="home">
                 {
                     posts.map((post) => (
                         
                         <div key={post._id}>
-                        <li key={post._id}>{post.desc}</li>
-                        <button onClick={() => navigate(`/addComment/${post._id}`)}>Add Comment</button>
+                        <div className="image">
+                            <img src={`http://localhost:5000/uploads/${post.image}`} alt=" " />
+                        </div>
+                        <br />
+                        
+                        {/* <button onClick={() => navigate(`/addComment/${post._id}`)}>Add Comment</button>
                         <button>Comments</button>
-                        <button onClick={() => handleLike(post._id)}>Like</button>
+                        <button onClick={() => handleLike(post._id)}>Like</button> */}
+                        <div className="icons">
+                            <span onClick={() => navigate(`/addComment/${post._id}`)}><FontAwesomeIcon icon={faComment} size="2x"/></span>
+                            <span><FontAwesomeIcon icon={faComments} size="2x"/></span>
+                            <span onClick={() => handleLike(post._id)}><FontAwesomeIcon icon={faHeart} size="2x"/></span>
+                        </div>
+                        {/* <br /> */}
+                        <div className="about">
+                            <span><strong>{post.likes && post.likes.length}</strong> like(s) | </span>
+                            <span><strong>{post.comments && post.comments.length}</strong> comments </span>
+                            <span className="date">{post.createdAt.slice(0,10)}</span>
+
+                        </div>
+                        <span ><strong>{post.username}</strong> </span>
+                        <span key={post._id} >{post.desc}</span>
+                        <br /><br /><br /><hr /><br /><br />
+
                         </div>
                         
                     ))

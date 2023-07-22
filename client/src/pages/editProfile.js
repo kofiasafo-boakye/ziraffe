@@ -111,7 +111,7 @@ const EditProfile = () => {
         <div >
             <Navbar></Navbar>
             <div className="editProfile">
-            <h2>My Profile</h2>
+            <h2 className="header">My Profile</h2>
                 <br />
                 <img src={`http://localhost:5000/uploads/${profilePicture}`} alt=" " style={{width: '90px', height: '90px'}}/>
                 <form action="" encType="multipart/form-data">

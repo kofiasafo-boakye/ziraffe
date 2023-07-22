@@ -6,6 +6,8 @@ import {BACKEND_API} from "../api/backend_api"
 import {toast} from "react-toastify"
 import { getStoredIdFromLocalStorage } from "../helpers/localStorageUtils";
 import useFetch from "../hooks/useFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -120,26 +122,31 @@ const CreatePost = () => {
     return (      
         <div>
             <Navbar></Navbar>
-            Post
+            <h2 style={{ textAlign: "center" }} className="header">Post</h2>
 
-            <form action="" encType="multipart/form-data">
-                <label htmlFor="">Select a photo</label>
-                    <input type="file" onChange={handleImageChange} ref={imageInputRef} required/>
-                        {imagePreview && (
-                            <div>
-                            <img src={imagePreview} alt="Preview" style={{ maxWidth: '100px' }} />
-                            <button type="button" onClick={handleClearImage}>Clear</button>
-                            </div>
-                        )}
-                <label htmlFor="">Enter Caption</label>
-                    <input type="text" name = "caption" required onChange={handleCaptionChange} value={caption}/>
-                <br />
-                {isPending && <button >Posting...</button>}
-                {/* <button onClick={handleSubmit}>Post</button> */}
-                {!isPending && <button onClick={handleSubmit}>Post</button>}
+            <div className="createPost">
+                <form action="" encType="multipart/form-data">
+                    <label htmlFor="">Select a photo</label>
+                        <input type="file" onChange={handleImageChange} ref={imageInputRef} required/>
+                            {imagePreview && (
+                                <div className="previewContent">
+                                <img src={imagePreview} alt="Preview" style={{ width: '400px', height: '300px' }} />
+                                <div className="close-icon" onClick={handleClearImage}>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </div>
+                                {/* <button type="button" onClick={handleClearImage}>Clear</button> */}
+                                </div>
+                            )}
+                    <label htmlFor="">Enter Caption</label>
+                        <input type="text" name = "caption" required onChange={handleCaptionChange} value={caption}/>
+                    <br />
+                    {isPending && <button >Posting...</button>}
+                    {/* <button onClick={handleSubmit}>Post</button> */}
+                    {!isPending && <button onClick={handleSubmit}>Post</button>}
 
-            
-            </form>
+                
+                </form>
+            </div>
         </div>
     );
 }

@@ -38,19 +38,19 @@ const Profile = () => {
         <div>
             <Navbar></Navbar>
             <div>
-                <h2 style={{ textAlign: "center" }}>My Profile</h2>
+                <h2 style={{ textAlign: "center" }} className="header">My Profile</h2>
                 <br />
                 <div className="profile">
                     {error && <div>{error}</div>}
                     {isPending && <div>Loading...</div>}
                     <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '80px', height: '80px'}}/>
                     <br />
-                    <div>{user.firstName}</div>
-                    <div>{user.lastName}</div>
-                    <div>@{user.username}</div>
-                    <div>{user.email}</div>
-                    <div>{user.followers && user.followers.length} followers</div>
-                    <div>{user.following && user.following.length} following</div>
+                    <div><strong>First Name:</strong> {user.firstName}</div>
+                    <div><strong>Last Name:</strong> {user.lastName}</div>
+                    <div><strong>Username:</strong> @{user.username}</div>
+                    <div><strong>Email:</strong> {user.email}</div>
+                    <div><strong>Followers:</strong> {user.followers && user.followers.length} followers</div>
+                    <div><strong>Following:</strong> {user.following && user.following.length} following</div>
                     <button onClick={handleSubmit}>Edit Details</button> 
                 </div>  
             </div>             

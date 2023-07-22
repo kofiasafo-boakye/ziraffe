@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema({
     image: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    username: {type: String, required: true, unique: true},
+    username: {type: String, required: true},
     profilePicture: {type: String, required: true},
     likes: [],
     comments: [
@@ -15,11 +15,12 @@ const postSchema = mongoose.Schema({
           text: { type: String, required: true },
           firstName: {type: String, required: true},
           lastName: {type: String, required: true},
-          username: {type: String, required: true, unique: true},
+          username: {type: String, required: true},
           profilePicture: {type: String, required: true},
           createdAt: { type: Date, default: Date.now },
         },
     ],
+    // date: { type: Date, default: Date.now }
 }, {timestamps: true})
 
 

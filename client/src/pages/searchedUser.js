@@ -130,17 +130,27 @@ const SearchedUser = () => {
     return ( 
         <div>
             <Navbar></Navbar>
-            Searched User
-            {error && <div>{error}</div>}
-            {isPending && <div>Loading...</div>}
-            {/* <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '150px', height: '150px'}}/> */}
-            <div>First Name:  {user.firstName}</div>
-            <div>Last Name:  {user.lastName}</div>
-            <div>Username:  {user.username}</div>
-            <div>Email:  {user.email}</div>
-            <div>Followers: {user.followers && user.followers.length}</div>
-            <div>Following: {user.following && user.following.length}</div>
-            <button disabled = {disabled} onClick={handleSubmit}>{text}</button>
+            <h2 style={{ textAlign: "center" }} className="header">Searched User</h2>
+            <br />
+            
+            <div className="profile">
+                {error && <div>{error}</div>}
+                {isPending && <div>Loading...</div>}
+                <img src={`http://localhost:5000/uploads/${user.profilePicture}`} alt=" " style={{width: '80px', height: '80px'}}/>
+                <div><strong>First Name:</strong>  {user.firstName}</div>
+                <div><strong>Last Name:</strong>  {user.lastName}</div>
+                <div><strong>Username:</strong>  @{user.username}</div>
+                <div><strong>Email:</strong>  {user.email}</div>
+                <div><strong>Followers:</strong> {user.followers && user.followers.length}</div>
+                <div><strong>Following:</strong> {user.following && user.following.length}</div>
+                {/* <div>First Name:  <strong>{user.firstName}</strong></div>
+                <div>Last Name:  <strong>{user.lastName}</strong></div>
+                <div>Username:  <strong>{user.username}</strong></div>
+                <div>Email:  <strong>{user.email}</strong></div>
+                <div>Followers: <strong>{user.followers && user.followers.length}</strong></div>
+                <div>Following: <strong>{user.following && user.following.length}</strong></div> */}
+                <button disabled = {disabled} onClick={handleSubmit}>{text}</button>
+            </div>
         </div>
     );
 }

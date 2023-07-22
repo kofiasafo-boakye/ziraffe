@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {BACKEND_API} from "../api/backend_api"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {faInstagram} from "@fortawesome/free-brands-svg-icons"
 
 
 const SignUp = () => {
@@ -111,7 +112,7 @@ const SignUp = () => {
 
     return ( 
         <div className="signup">
-            <h1 className="form-logo">Sovichete</h1>
+            <h1 className="form-logo"> <FontAwesomeIcon icon={faInstagram} /> Sovichete</h1>
             <form action="" onSubmit={handleSubmit}>
               <label>First name</label>
               <div>

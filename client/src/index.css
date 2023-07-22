@@ -14,12 +14,21 @@
 }
 
 
+/* OTHERS */
+
 .content {
     max-width: 600px;
     margin: 40px auto;
     /* padding: 20px; */
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
+.header{
+    color: var(--grayColor);
+}
 
 
 /* SIGN UP/LOGIN FORM */
@@ -33,6 +42,8 @@
 
 .form-logo{
     color: var(--primaryColor);
+    /* align-self: center;
+    justify-self: center; */
 }
 
 .signup input{
@@ -141,7 +152,7 @@ nav{
 
 /* PROFILE PAGE */
 .profile{
-    width: 300px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,12 +170,16 @@ nav{
     background-color: var(--primaryColor);
     color: white;
     border-style: none;
-    width: 100%;
+    width: 50%;
     height: 35px;
     margin-top: 10px;
     margin-bottom: 5px;
     font-size: 13px;
     border-radius: 20px;
+}
+
+.profile div{
+    margin-top: 5px;
 }
 
 .profile button:hover{
@@ -234,6 +249,10 @@ nav{
     width: 80%;
 }
 
+.search input:focus {
+    border: 1px solid rgb(161, 161, 161);
+}
+
 .searchInput{
     display: flex;
     flex-direction: column;
@@ -243,8 +262,226 @@ nav{
 }
 
 .searchResults {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     /* flex-wrap: wrap; */
     /* justify-content: center; */
     margin-left: 60px;
+    /* padding: 4px; */
+    /* background-color: rebeccapurple; */
+    
+    width: 80%;
+}
+
+.align-searchResults{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-top: 8px;
+}
+
+.right-elements{
+    margin-left: 5px;
+
+}
+
+.firstName{
+    color: var(--grayColor);
+    font-weight: bold;
+}
+
+
+
+/* POST PAGE */
+
+.createPost{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    margin: auto;
+}
+
+.createPost input{
+    padding: 9px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.1s;
+    width: 100%;
+    margin-bottom: 5px;    
+}
+
+.createPost input:focus {
+    border: 1px solid rgb(161, 161, 161);
+}
+
+.createPost button{
+    background-color: var(--primaryColor);
+    color: white;
+    border-style: none;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.createPost button:hover{
+    background-color: var(--hoverColor);
+    color: white;
+    cursor: pointer;
+}
+
+.previewContent{
+    position: relative;
+    display: inline-block;
+}
+
+.close-icon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+
+/* HOME PAGE */
+
+.container button{
+    background-color: var(--primaryColor);
+    color: white;
+    border-style: none;
+    width: 7%;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.container button:hover{
+    background-color: var(--hoverColor);
+    color: white;
+    cursor: pointer;
+}
+
+.home{
+    /* margin-left: 31px; */
+    margin: auto;
+    /* border: 1px solid red;   */
+    width: 500px;
+    position: relative;
+}
+
+.home img{
+   margin-left: 100px;
+   margin: auto;
+}
+
+.home button{
+    background-color: white;
+    color: var(--primaryColor);
+    border: 1px solid var(--primaryColor);
+    width: 23%;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    border-radius: 20px;
+    margin-right: 20px;
+
+    
+}
+
+.home button:hover{
+    background-color: var(--hoverColor);
+    color: white;
+    cursor: pointer;
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+}
+
+.icons{
+    /* color: var(--grayColor); */
+    color: rgb(196, 195, 195);
+    margin-bottom: 10px;
+    
+}
+
+.icons span{
+    margin-right: 10px;
+    
+}
+
+.icons span:hover{
+    cursor: pointer;
+}
+
+.about{
+    color: var(--grayColor);
+    margin-bottom: 5px;
+}
+
+.date{
+    margin-left: 270px;
+}
+
+/* .information{
+    color: var(--grayColor);
+} */
+
+
+/* ADD A COMMENT PAGE */
+
+.comments{
+    color: var(--grayColor);
+    margin-bottom: 5px;
+    /* margin-left: 100px; */
+    /* width: 500px;    */
+}
+
+.addComment{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+}
+
+.addComment input{
+    padding: 9px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.1s;
+    width: 100%;
+    margin-bottom: 5px;    
+}
+
+.addComment input:focus {
+    border: 1px solid rgb(161, 161, 161);
+}
+
+.addComment button{
+    background-color: var(--primaryColor);
+    color: white;
+    border-style: none;
+    margin-left: 150px;
+    width: 50%;
+    height: 35px;
+    align-self: center;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.addComment button:hover{
+    background-color: var(--hoverColor);
+    color: white;
+    cursor: pointer;
 }
