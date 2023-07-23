@@ -188,6 +188,10 @@ nav{
     cursor: pointer;
 }
 
+.profile button:disabled{
+    opacity: 0.6;
+    pointer-events: none;
+}
 
 /* EDIT PROFILE PAGE */
 .editProfile{
@@ -486,9 +490,3 @@ nav{
     cursor: pointer;
 }
 
-
-/* COMMENTS PAGE */
-
-.comments{
-
-}
