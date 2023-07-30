@@ -14,7 +14,7 @@ import { faComment, faComments, faHeart } from "@fortawesome/free-solid-svg-icon
 const Home = () => {
     const navigate = useNavigate()
     const sId = getStoredIdFromLocalStorage()
-
+    
     useEffect (() => {
         if(!sId){
             navigate('/')
@@ -53,9 +53,10 @@ const Home = () => {
               }
             else{
                 toast.success(data)
-                setTimeout(() => {
-                    window.location.reload();
-                  }, 5000)
+                console.log(data)
+                // setTimeout(() => {
+                //     window.location.reload();
+                //   }, 5000)
                 // navigate("/search")
             }
             
@@ -91,9 +92,10 @@ const Home = () => {
                         <button>Comments</button>
                         <button onClick={() => handleLike(post._id)}>Like</button> */}
                         <div className="icons">
-                            <span onClick={() => navigate(`/addComment/${post._id}`)}><FontAwesomeIcon icon={faComment} size="2x"/></span>
-                            <span onClick={() => navigate(`/Comments/${post._id}`)}><FontAwesomeIcon icon={faComments} size="2x"/></span>
-                            <span onClick={() => handleLike(post._id)}><FontAwesomeIcon icon={faHeart} size="2x"/></span>
+                           
+                            <span onClick={() => navigate(`/addComment/${post._id}`)} title="Add Comment"><FontAwesomeIcon icon={faComment} size="2x"/></span>
+                            <span onClick={() => navigate(`/Comments/${post._id}`)} title="Comments"><FontAwesomeIcon icon={faComments} size="2x"/></span>
+                            <span onClick={() => handleLike(post._id)} title="Like"><FontAwesomeIcon icon={faHeart} size="2x"/></span>
                         </div>
                         {/* <br /> */}
                         <div className="about">
