@@ -49,8 +49,8 @@ const Profile = () => {
                     <div><strong>Last Name:</strong> {user.lastName}</div>
                     <div><strong>Username:</strong> @{user.username}</div>
                     <div><strong>Email:</strong> {user.email}</div>
-                    <div><strong>Followers:</strong> {user.followers && user.followers.length} followers</div>
-                    <div><strong>Following:</strong> {user.following && user.following.length} following</div>
+                    <div><strong>Followers:</strong> {user.followers && user.followers.length} </div>
+                    <div><strong>Following:</strong> {user.following && user.following.length} </div>
                     <button onClick={handleSubmit}>Edit Details</button> 
                 </div>  
             </div>             

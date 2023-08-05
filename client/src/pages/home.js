@@ -77,7 +77,7 @@ const Home = () => {
                 {/* Other page content */}
                 {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>} 
-                {/* {(posts && posts.length == 0) && <div>No data</div>} */}
+                {/* {(posts && posts.length == 0) && <div>No Posts</div>} */}
                 <div className="home">
                 {
                     posts.map((post) => (
